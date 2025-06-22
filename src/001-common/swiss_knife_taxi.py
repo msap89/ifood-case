@@ -138,7 +138,8 @@ def raw_to_silver(types, years, months, raw_base, silver_base):
 
 #Função para agrupar os dados dos meses em um único path separado por tipo de taxi
 from delta.tables import DeltaTable
-from pyspark.sql.functions import date_format, current_timestamp, col
+from pyspark.sql.window import Window
+from pyspark.sql.functions import date_format, current_timestamp, col, row_number
 
 def silver_to_gold(types, years, months, silver_base, gold_base):
     for t in types:
@@ -184,6 +185,12 @@ def silver_to_gold(types, years, months, silver_base, gold_base):
                         (col("pickup_datetime") >= "2023-01-01") &
                         (col("pickup_datetime") < "2023-06-01")
                     )
+
+                    #remoção de duplicatas para manter sempre o registro mais recente
+                    window = Window.partitionBy("VendorID", "pickup_datetime", "dropoff_datetime").orderBy(col("dt_update_table_utc").desc())
+
+                    df_gold = df_gold.withColumn("rn", row_number().over(window))
+                    df_gold = df_gold.filter(col("rn") == 1).drop("rn")
 
                     if DeltaTable.isDeltaTable(spark, gold_path):
                         delta_table = DeltaTable.forPath(spark, gold_path)
