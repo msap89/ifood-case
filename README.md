@@ -32,7 +32,7 @@ Este projeto implementa uma solução de engenharia de dados para ingestão, tra
 
 - Foi calculada a média mensal do valor total das corridas.
 - Resultado destacado para os meses de janeiro a maio de 2023, conforme dados ingeridos.
-- Exemplo: Maio apresentou um aumento gradual em relação aos meses anteriores, com média de $28,96.
+- Exemplo: Maio apresentou um aumento gradual em relação aos meses anteriores, com média de $28,50.
   ![image](https://github.com/user-attachments/assets/ab79d290-0ffa-4c00-9e23-e2c9617e8c64)
 
 
