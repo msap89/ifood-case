@@ -30,7 +30,7 @@ Passo a Passo
 ### Estrutura do Repositório
 
 ```bash
-└── .github/
+├── .github/
 │   └── workflows/                                # Workflows de CI/CD
 ├── analysis/
 │   └── 001-questions/
