@@ -1,41 +1,16 @@
 # Databricks notebook source
 #Função para manutenção do Delta Table
 
+import os
+import requests
+from datetime import datetime
 from delta.tables import DeltaTable
-import datetime
-
-def delta_maintenance(silver_path="dbfs:/FileStore/raw/TLC_NYC/"):
-    print(f"Executando manutenção Delta em {datetime.datetime.now()}")
-
-    types = [f.name.strip("/") for f in dbutils.fs.ls(silver_path) if f.isDir]
-
-    for t in types:
-        type_path = f"{silver_path}{t}/"
-        years = [f.name.strip("/") for f in dbutils.fs.ls(type_path) if f.isDir]
-
-        for year in years:
-            year_path = f"{type_path}{year}/"
-            months = [f.name.strip("/") for f in dbutils.fs.ls(year_path) if f.isDir]
-
-            for month in months:
-                delta_path = f"{year_path}{month}/"
-                try:
-                    delta_table = DeltaTable.forPath(spark, delta_path)
-                    delta_table.optimize().executeCompaction()
-                    print(f"OPTIMIZE executado com sucesso em {delta_path}")
-
-                    delta_table.vacuum(168)  # 7 dias
-                    print(f"VACUUM executado com sucesso em {delta_path}")
-                except Exception as e:
-                    print(f"Erro na manutenção em {delta_path}: {e}")
+from pyspark.sql.window import Window
+from pyspark.sql.functions import date_format, current_timestamp, col, row_number
 
 # COMMAND ----------
 
 ## Funções para downlaod dos arquivos
-
-import os
-import requests
-from datetime import datetime
 
 def download_file_to_dbfs(url, dbfs_path):
     """
@@ -111,7 +86,6 @@ def ingest_taxi_data(types, years, months, base_url="https://d37ci6vzurychx.clou
 # COMMAND ----------
 
 #Função para salvar em Delta camada na Silver
-from pyspark.sql.functions import current_timestamp, date_format
 
 def raw_to_silver(types, years, months, raw_base, silver_base):
     for t in types:
@@ -137,9 +111,6 @@ def raw_to_silver(types, years, months, raw_base, silver_base):
 # COMMAND ----------
 
 #Função para agrupar os dados dos meses em um único path separado por tipo de taxi
-from delta.tables import DeltaTable
-from pyspark.sql.window import Window
-from pyspark.sql.functions import date_format, current_timestamp, col, row_number
 
 def silver_to_gold(types, years, months, silver_base, gold_base):
     for t in types:
