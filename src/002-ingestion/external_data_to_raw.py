@@ -3,7 +3,7 @@
 
 # COMMAND ----------
 
-dbutils.widgets.text("types", "yellow,green,fhv", "Types")
+dbutils.widgets.text("types", "yellow,green", "Types")
 dbutils.widgets.text("months", "01,02,03,04,05", "Months")
 dbutils.widgets.text("years", "2023", "Years")
 
