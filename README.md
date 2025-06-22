@@ -30,6 +30,12 @@ Passo a Passo
 ### Estrutura do Repositório
 
 ```bash
+└── .github/
+│   └── workflows/                                # Workflows de CI/CD
+├── analysis/
+│   └── 001-questions/
+│       ├── insights_yellow_taxi                 # Análise da média de valor total recebido por mês (yellow)
+│       └── may_insights_hourly_passenger_count  # Análise da média de passageiros por hora (mês de maio)
 ├── src/
 │   ├── 001-common/
 │   │   └── swiss_knife_taxi                      # Funções utilitárias reaproveitáveis
@@ -39,13 +45,7 @@ Passo a Passo
 │   │   └── raw_to_silver                         # Conversão dos dados brutos (raw) para a camada Silver com formatação e controle
 │   └── 004-silver-processing/
 │       └── silver_to_gold                        # Consolidação e limpeza dos dados para análise (camada Gold)
-├── analysis/
-│   └── 001-questions/
-│       ├── insights_yellow_taxi                 # Análise da média de valor total recebido por mês (yellow)
-│       └── may_insights_hourly_passenger_count  # Análise da média de passageiros por hora (mês de maio)
 ├── README.md                                     # Documentação do projeto
-└── .github/
-    └── workflows/                                # Workflows de CI/CD
 ```
 
 
