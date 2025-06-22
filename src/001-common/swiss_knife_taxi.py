@@ -1,6 +1,4 @@
 # Databricks notebook source
-#Função para manutenção do Delta Table
-
 import os
 import requests
 from datetime import datetime
