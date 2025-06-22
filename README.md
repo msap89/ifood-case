@@ -43,9 +43,7 @@ Passo a Passo
 │   └── 001-questions/
 │       ├── insights_yellow_taxi                 # Análise da média de valor total recebido por mês (yellow)
 │       └── may_insights_hourly_passenger_count  # Análise da média de passageiros por hora (mês de maio)
-
 ├── README.md                                     # Documentação do projeto
-
 └── .github/
     └── workflows/                                # Workflows de CI/CD
 ```
