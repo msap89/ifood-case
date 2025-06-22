@@ -17,6 +17,34 @@ Este projeto implementa uma solução de engenharia de dados para ingestão, tra
 - Python para funções auxiliares e notebooks
 - SQL para consultas analíticas
 
+## Justificativas Técnicas
+
+- **Delta Lake:** escolhido para garantir consistência e escalabilidade no processamento dos dados, além do suporte a operações ACID e `merge` para atualizações incrementais.
+- **Arquitetura em camadas (Raw, Silver, Gold):** facilita o controle de qualidade, rastreabilidade e preparação dos dados para análise.
+- **Uso de Widgets no Databricks:** para parametrizar execuções e permitir flexibilidade no pipeline sem necessidade de alterar código.
+- **Merge Delta na camada Gold:** para evitar duplicações e manter dados atualizados incrementalmente.
+- **Particionamento por tipo, ano e mês:** otimiza a leitura e escrita, reduzindo custos computacionais e melhorando performance.
+- **Uso do Notebook execute_all** com a versão Community do Databricks não é possível criar Workflows, então para facilitar a execução como um todo, foi criado esse Notebook.
+
+## Resultados das Análises
+
+### 1. Média do valor total (`total_amount`) recebido por mês nos Yellow Taxis
+
+- Foi calculada a média mensal do valor total das corridas.
+- Resultado destacado para os meses de janeiro a maio de 2023, conforme dados ingeridos.
+- Exemplo: Maio apresentou um aumento gradual em relação aos meses anteriores, com média de $28,96.
+  ![image](https://github.com/user-attachments/assets/ab79d290-0ffa-4c00-9e23-e2c9617e8c64)
+
+
+
+### 2. Média de passageiros por hora do dia no mês de maio (todos os táxis)
+
+- Análise mostrou que o maior número médio de passageiros ocorre entre as 02h e 03h.
+- Esses dados auxiliam na identificação dos horários de pico para planejamento e tomada de decisão.
+  ![image](https://github.com/user-attachments/assets/9b8ef278-7509-41b0-9466-7b6089fb0932)
+
+
+
 ## Como Executar
 Pré-requisitos
 - Conta no Databricks
