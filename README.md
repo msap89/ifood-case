@@ -39,7 +39,6 @@ Passo a Passo
 │   │   └── raw_to_silver                         # Conversão dos dados brutos (raw) para a camada Silver com formatação e controle
 │   └── 004-silver-processing/
 │       └── silver_to_gold                        # Consolidação e limpeza dos dados para análise (camada Gold)
-
 ├── analysis/
 │   └── 001-questions/
 │       ├── insights_yellow_taxi                 # Análise da média de valor total recebido por mês (yellow)
