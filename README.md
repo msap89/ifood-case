@@ -24,7 +24,7 @@ Este projeto implementa uma solução de engenharia de dados para ingestão, tra
 - **Uso de Widgets no Databricks:** para parametrizar execuções e permitir flexibilidade no pipeline sem necessidade de alterar código.
 - **Merge Delta na camada Gold:** para evitar duplicações e manter dados atualizados incrementalmente.
 - **Particionamento por tipo, ano e mês:** otimiza a leitura e escrita, reduzindo custos computacionais e melhorando performance.
-- **Uso do Notebook execute_all** com a versão Community do Databricks não é possível criar Workflows, então para facilitar a execução como um todo, foi criado esse Notebook.
+- **Uso do Notebook execute_all:** com a versão Community do Databricks não é possível criar Workflows, então para facilitar a execução como um todo, foi criado esse Notebook.
 
 ## Resultados das Análises
 
