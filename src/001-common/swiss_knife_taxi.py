@@ -133,3 +133,74 @@ def raw_to_silver(types, years, months, raw_base, silver_base):
 
                 except Exception as e:
                     print(f"Erro ao processar {raw_path}: {e}")
+
+# COMMAND ----------
+
+#Função para agrupar os dados dos meses em um único path separado por tipo de taxi
+from delta.tables import DeltaTable
+from pyspark.sql.functions import date_format, current_timestamp, col
+
+def silver_to_gold(types, years, months, silver_base, gold_base):
+    for t in types:
+        if t == "yellow":
+            pickup_col = "tpep_pickup_datetime"
+            dropoff_col = "tpep_dropoff_datetime"
+        elif t == "green":
+            pickup_col = "lpep_pickup_datetime"
+            dropoff_col = "lpep_dropoff_datetime"
+        else:
+            pickup_col = "pickup_datetime"
+            dropoff_col = "dropoff_datetime"
+        
+        selected_columns = ["VendorID","passenger_count","total_amount",pickup_col,dropoff_col]
+
+        for year in years:
+            for month in months:
+                month_str = f"{int(month):02d}"
+                silver_path = f"{silver_base}{t}/{year}/{month_str}/"
+                gold_path = f"{gold_base}{t}/"
+
+                try:
+                    df = spark.read.format("delta").load(silver_path)
+
+                    #rename para padronizar as colunas
+                    if pickup_col != "pickup_datetime":
+                        df = df.withColumnRenamed(pickup_col , "pickup_datetime")
+                    if dropoff_col != "dropoff_datetime":
+                        df = df.withColumnRenamed(dropoff_col, "dropoff_datetime")
+                    
+                    df_gold = (
+                        df.select(
+                            "VendorID",
+                            "passenger_count",
+                            "total_amount",
+                            date_format("pickup_datetime", "yyyy-MM-dd HH:mm:ss").alias("pickup_datetime"),
+                            date_format("dropoff_datetime", "yyyy-MM-dd HH:mm:ss").alias("dropoff_datetime")
+                        )
+                        .withColumn("dt_update_table_utc", date_format(current_timestamp(), "yyyy-MM-dd HH:mm:ss"))
+                    )
+
+                    df_gold = df_gold.filter(
+                        (col("pickup_datetime") >= "2023-01-01") &
+                        (col("pickup_datetime") < "2023-06-01")
+                    )
+
+                    if DeltaTable.isDeltaTable(spark, gold_path):
+                        delta_table = DeltaTable.forPath(spark, gold_path)
+                        (
+                            delta_table.alias("target")
+                            .merge(
+                                df_gold.alias("source"),
+                                "target.VendorID = source.VendorID AND target.pickup_datetime = source.pickup_datetime and target.dropoff_datetime = source.dropoff_datetime"
+                            )
+                            .whenMatchedUpdateAll()
+                            .whenNotMatchedInsertAll()
+                            .execute()
+                        )
+                        print(f"MERGE executado com sucesso: {gold_path}")
+                    else:
+                        #primeira carga na gold
+                        df_gold.write.format("delta").mode("overwrite").save(gold_path)
+ 
+                except Exception as e:
+                    print(f"Erro ao processar {silver_path}: {e}")
