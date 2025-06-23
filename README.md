@@ -101,7 +101,7 @@ Passo a Passo
 │   │   ├── exploratory_analysis                 # Anáslise explotatória                 
 │   │   └── insights_yellow_taxi                 # Análise da média de valor total recebido por mês (yellow)
 │   │   └── may_insights_hourly_passenger_count  # Análise da média de passageiros por hora (mês de maio)
-│   └── execute_all
+│   └── execute_all                              # Notebook para execução total do processo, desde a ingestão até as análises do desafio
 ├── src/
 │   ├── 001-common/
 │   │   └── swiss_knife_taxi                      # Funções utilitárias reaproveitáveis
