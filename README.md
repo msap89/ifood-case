@@ -35,6 +35,11 @@ Este projeto implementa uma solução de engenharia de dados para ingestão, tra
 - Exemplo: Maio apresentou um aumento gradual em relação aos meses anteriores, com média de $28,50.
   ![image](https://github.com/user-attachments/assets/ab79d290-0ffa-4c00-9e23-e2c9617e8c64)
 
+  Resultado da Consulta:
+  
+![image](https://github.com/user-attachments/assets/caf8aa0c-43f3-4483-88be-46dd68b8a6d0)
+
+
 
 
 ### 2. Média de passageiros por hora do dia no mês de maio (todos os táxis)
@@ -42,6 +47,37 @@ Este projeto implementa uma solução de engenharia de dados para ingestão, tra
 - Análise mostrou que o maior número médio de passageiros ocorre entre as 02h e 03h.
 - Esses dados auxiliam na identificação dos horários de pico para planejamento e tomada de decisão.
   ![image](https://github.com/user-attachments/assets/9b8ef278-7509-41b0-9466-7b6089fb0932)
+
+  Resultado da Consulta:
+
+  ![image](https://github.com/user-attachments/assets/899ef17a-e6c9-4ab2-98ef-7eff918cb003)
+
+
+
+### 3. Análises complementares
+- Foi adicionado 2 análises complementares interessantes para entender ainda mais o comportamento para Yellow Táxis.
+- Volume de corrida por mês:
+![image](https://github.com/user-attachments/assets/6a771da0-d0b5-4827-87b6-b294aaca441c)
+
+Este gráfico mostra o comportamento mensal da demanda por táxis entre janeiro e maio de 2023, útil para identificar sazonalidade ou picos de atividade.
+
+Resultado da Consulta:
+
+![image](https://github.com/user-attachments/assets/11eb7f67-2263-4ade-a369-74c472fd5350)
+
+
+
+- Top 10 corridas com os maiores valores pagos:
+![image](https://github.com/user-attachments/assets/fed3d4c4-3a87-452f-877e-df5dfe68d0e0)
+
+
+Essas corridas apresentam valores de total_amount muito acima da média. Possivelmente envolvem erros de entrada ou tarifas extraordinárias.
+
+Resultado da Consulta:
+
+![image](https://github.com/user-attachments/assets/413dc060-78c6-450e-800f-96d7e1be0995)
+
+
 
 
 
