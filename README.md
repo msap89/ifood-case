@@ -98,7 +98,8 @@ Passo a Passo
 │   └── workflows/                                # Workflows de CI/CD
 ├── analysis/
 │   └── 001-awsers/
-│   │   ├── insights_yellow_taxi                 # Análise da média de valor total recebido por mês (yellow)
+│   │   ├── exploratory_analysis                 # Anáslise explotatória                 
+│   │   └── insights_yellow_taxi                 # Análise da média de valor total recebido por mês (yellow)
 │   │   └── may_insights_hourly_passenger_count  # Análise da média de passageiros por hora (mês de maio)
 │   └── execute_all
 ├── src/
