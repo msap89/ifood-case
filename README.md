@@ -88,7 +88,7 @@ Pré-requisitos
 
 Passo a Passo
 1. Clone o repositório no ambiente ou importe os notebooks no Databricks
-2. Configure os widgets de parâmetros em cada notebook para tipos, meses e anos desejados (opcional). Já está configurado para os meses solicitados no desafio.
+2. Configure os widgets de parâmetros em cada notebook para tipos, meses e anos desejados (opcional). Já está configurado para os meses, ano e tipos solicitados no desafio.
 3. Execute o notebook `execute_all` no diretório analysis/. Ele irá executa todos os tratamentos necessários até a disponibilização das análises propostas pelo desafio.
 
 ### Estrutura do Repositório
