@@ -97,9 +97,10 @@ Passo a Passo
 ├── .github/
 │   └── workflows/                                # Workflows de CI/CD
 ├── analysis/
-│   └── 001-questions/
-│       ├── insights_yellow_taxi                 # Análise da média de valor total recebido por mês (yellow)
-│       └── may_insights_hourly_passenger_count  # Análise da média de passageiros por hora (mês de maio)
+│   └── 001-awsers/
+│   |   ├── insights_yellow_taxi                 # Análise da média de valor total recebido por mês (yellow)
+│   |   └── may_insights_hourly_passenger_count  # Análise da média de passageiros por hora (mês de maio)
+|   └── execute_all
 ├── src/
 │   ├── 001-common/
 │   │   └── swiss_knife_taxi                      # Funções utilitárias reaproveitáveis
