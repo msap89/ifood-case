@@ -16,3 +16,7 @@
 # COMMAND ----------
 
 # MAGIC %run ../analysis/001-awsers/may_insights_hourly_passenger_count
+
+# COMMAND ----------
+
+# MAGIC %run ../analysis/001-awsers/exploratory_analysis
